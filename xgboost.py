@@ -76,3 +76,10 @@ X = pd.concat([x_train,x_val],axis=0).reset_index(drop=True)
 y = pd.concat([y_train,y_val],axis=0).reset_index(drop=True)
 DMat = xgb.DMatrix(X,label=y)
 xgb.cv(params_tune,DMat,120,nfold=5,early_stopping_rounds = 25)
+
+
+
+### Important Note ###
+# CV is used to identify performance of a set of parameters on unseen data
+# While Hyperparameter Optimisation(e.g. Gridsearch & Optuna) are used to find the best set of parameters to get
+# desired performance. So first do hyper parameter opt and validate it on potential unseen data using cv
